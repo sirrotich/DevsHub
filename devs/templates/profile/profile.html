@@ -3,33 +3,33 @@
 {% block content %}
 
 <div class="container top">
-    <div class="row">
+    <div class="row" style="background-image: url('https://images.pexels.com/photos/92905/pexels-photo-92905.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=1&w=500'); background-attachment: fixed;background-size: cover; background-repeat: no-repeat;">
         <div class="col-md-12">
             <div class="row top-section">
-                <div class="col-md-5 profile-image">
+                <div class="col-md-5 profile-image" style="margin-left: 250px; margin-top: 50px;">
                     {% if profile_details.prof_pic %}
                     <img src="{{profile_details.prof_pic.cdn_url}}" alt="profile-photo">
                     {% else %}
-                    <img src="/static/img/profil.png" alt="avatar">
+                    <img src="/static/img/profil.jpg" alt="avatar">
                     {% endif %}
                 </div>
-                <div class="col-md-5 text-center">
+                <div class="col-md-5 text-center" style="margin-top: 100px; margin-left: 250px;" >
                     <ul class="list-inline">
                         <li class="list-inline-item">
-                            <span class="username">{{ profile.username }}</span> 
+                            <span class="username" style="color: white;">{{ profile.username }}</span> 
                         </li>
                         {% if profile.username == user.username %}
                         <li class="list-inline-item">
-                            <a class="btn btn-edit" href="{% url 'edit_profile' %}">Edit Profile</a>
+                            <a class="btn btn-info" href="{% url 'edit_profile' %}">Edit Profile</a>
                         </li>
                         <li class="list-inline-item">
-                            <a data-toggle="modal" data-target="#settings"><i class="fa fa-cog fa-2x"></i></a>
+                            <a data-toggle="modal" data-target="#settings"><i class="fa fa-cog fa-2x" style="color:white;"></i></a>
                         </li>
                         {% endif %}
                     </ul>
                     <ul class="list-inline">
-                        <li class="list-inline-item">
-                            <span class="font-weight-bold">{{posts|length}} </span> Posts
+                        <li class="list-inline-item" style="color: white;">
+                            <span class="font-weight-bold" style="color:white;">{{posts|length}} </span> Posts
                         </li>
                     </ul>
                     <p class="font3">{{profile_details.bio|safe}}</p>

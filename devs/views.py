@@ -8,11 +8,20 @@ from django.template.loader import render_to_string
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import SignupForm, PostForm, ProfileForm, CommentForm
+# from .emails import send_activation_email
+# from .tokens import account_activation_token
+from .models import Post, Profile, Comments
+from  django.contrib import messages
+
+
 def index(request):
     return render(request, 'index.html')
 
+
+@login_required(login_url='/accounts/login')
 def devs(request):
-    return render(request, 'devs.html')
+    posts = Post.get_all_posts()
+    return render(request, 'devs.html', {'posts':posts})
 
 def profile(request,username):
     profile = User.objects.get(username=username)
@@ -25,6 +34,9 @@ def profile(request,username):
     title = f'@{profile.username} Hood Updates'
 
     return render(request, 'profile/profile.html',{'title':title, 'profile':profile,'profile_details':profile_details,'posts':posts})
+
+
+@login_required(login_url='/accounts/login')
 def upload_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
@@ -39,6 +51,8 @@ def upload_post(request):
     
     return render(request, 'profile/upload_post.html', {'form':form})
 
+
+@login_required(login_url='/accounts/login')
 def edit_profile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
@@ -80,3 +94,22 @@ def signup(request):
         else:
             form = SignupForm()
             return render(request, 'registration/signup.html',{'form':form})
+
+
+@login_required(login_url='/accounts/login')
+def single_post(request, post_id):
+    post = Post.get_post_id(post_id)
+    comments = Comments.get_comments_by_posts(post_id)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.user = request.user
+            comment.save()
+            return redirect('single_post', post_id=post_id)
+    else:
+        form = CommentForm()
+        
+    return render(request, 'post.html', {'post':post, 'form':form, 'comments':comments})
