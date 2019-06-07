@@ -6,7 +6,7 @@
     <div class="row" style="background-image: url('https://images.pexels.com/photos/92905/pexels-photo-92905.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=1&w=500'); background-attachment: fixed;background-size: cover; background-repeat: no-repeat;">
         <div class="col-md-12">
             <div class="row top-section">
-                <div class="col-md-5 profile-image" style="margin-left: 250px; margin-top: 50px;">
+                <div class="col-md-5 profile-image" style="margin-left: 250px; margin-top: 50px; color: azure;">
                     {% if profile_details.prof_pic %}
                     <img src="{{profile_details.prof_pic.cdn_url}}" alt="profile-photo">
                     {% else %}
@@ -32,9 +32,9 @@
                             <span class="font-weight-bold" style="color:white;">{{posts|length}} </span> Posts
                         </li>
                     </ul>
-                    <p class="font3">{{profile_details.bio|safe}}</p>
+                    <p class="font3" style="color:azure;">{{profile_details.bio|safe}}</p>
                     {% if profile.username == user.username %}
-                    <p><a href="{% url 'upload_post' %}" class="btn btn-info">POST</a></p>
+                    <p><a href="{% url 'upload_post' %}" class="btn btn-info">SHARE PROFILE</a></p>
                     {% endif %} 
                 </div>
             </div>

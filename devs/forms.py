@@ -20,10 +20,10 @@ class PostForm(forms.ModelForm):
 
 class ProfileForm(forms.ModelForm):
     class Meta:
-        # model = Profile
+        model = Profile
         exclude = ['user']
 
 class CommentForm(forms.ModelForm):
     class Meta:
-        # model = Comments
+        model = Comments
         exclude = ['post', 'user']

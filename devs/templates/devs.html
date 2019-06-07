@@ -4,7 +4,7 @@
 <br>
 <div class="row" style="background-image: url('https://images.pexels.com/photos/1068523/pexels-photo-1068523.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=650&w=940');background-attachment:fixed;background-size: cover;background-repeat: no-repeat; height: 400px;">
     <h1 style="margin-left: 300px;margin-top: 150px;font-family: 'Permanent Marker', cursive
-    ;color: greenyellow; font-size: 90px;">Meet The Techies</h1>
+    ;background-color: black; opacity: 0.85;color:white; font-size: 90px;">Meet The Techies</h1>
 </div>
 <br>
 <br>
@@ -104,7 +104,58 @@
 </div>
 </div>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="row">
+          
+  {% for img in posts %}
+  
+  <div class="col-md-4">
+      <div class="card-wrapper" style="max-height: 300px; max-width: 300px;">
+              <div id="card-1" class="card card-rotating text-center">
+            
+                <!-- Front Side -->
+                <div class="face front">
+            
+                  <!-- Image-->
+                  <div class="card-up">
+                    <img class="card-img-top" src="{{img.photo.cdn_url}}">
+                  </div>
+            
+                  <!-- Avatar -->
+                  {% if profile_details.prof_pic %}
+                  <div class="avatar mx-auto white"><img src="{{profile_details.prof_pic.cdn_url}}" class="rounded-circle"
+                      alt="Sample avatar image." style="margin-top: -80px; height: 150px; width: 150px;">
+                  </div>
+                  {%else%}
+                  <img src="static/img/profil.jpg" class="rounded-circle"
+                      alt="Sample avatar image." style="margin-top: -80px; height: 150px; width: 150px;">
+                  {%endif%}
+            
+                  <!-- Content -->
+                  <div class="card-body">
+                      <a class="font-weight-bold mb-3" href="{% url 'profile' username=img.profile.username %}">{{img.profile.username}}</a>
+                    <p class="font-weight-bold blue-text">designer</p>
+                    <p class="font-weight-bold green-text">{{profile_details.bio|safe}}</p>
+                    <!-- Triggering button -->
+                    
+                  </div>
+                </div>
+                <!-- Front Side -->
+            
+</div>
+</div>
+</div>
+  {% empty %}
+  <h2>Your HoodMates are sleeping they havent posted anything</h2>
+  {% endfor %}
 
 
+</div>
 
 {% endblock%}
