@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 from pyuploadcare.dj.models import ImageField
 
-
 class Profile(models.Model):
     prof_pic = ImageField(blank=True, manual_crop='800x800')
     bio = HTMLField()
