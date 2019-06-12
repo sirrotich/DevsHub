@@ -14,6 +14,7 @@ from .models import Post, Profile, Comments
 from  django.contrib import messages
 
 
+
 def index(request):
     return render(request, 'index.html')
 
