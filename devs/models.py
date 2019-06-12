@@ -63,6 +63,7 @@ class Post(models.Model):
         posts = Post.objects.all()
         return posts
 
+
 class Comments(models.Model):
     comment = HTMLField()
     posted_on = models.DateTimeField(auto_now=True)
