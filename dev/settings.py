@@ -49,10 +49,11 @@ DATABASES['default'].update(db_from_env)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
-
+ALLOWED_HOSTS = ['your_server_ip', 'ngrok_secure_url']
 # Application definition
 
 INSTALLED_APPS = [
+    'webpush',
     'bootstrap4',
     'devs.apps.DevsConfig',
     'django.contrib.admin',
@@ -128,6 +129,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+WEBPUSH_SETTINGS = {
+   "VAPID_PUBLIC_KEY": "BAERuoTenkmdBn4Rj_yazwCMCs1DgHZEl28KcnF2UQ2ONhAE2_tfqvNc_MKp89bf7I_wYo0VzDNWkFSkHSkBrWI",
+   "VAPID_PRIVATE_KEY": "0On4SnAccZRhPvZ4APDoEeTvDRN6Wzu-_trDCAE_sFU",
+   "VAPID_ADMIN_EMAIL": "rotichtitus12@gmail.com"
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
